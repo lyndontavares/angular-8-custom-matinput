@@ -1,0 +1,8 @@
+<div style="display: flex; flex-direction: row;">
+  <input [id]="id" [name]="id" type="number" class="mat-input-element" [required]="required" [placeholder]="placeholder"
+    [disabled]="disabled" [min]="min" [max]="max" />
+  <div style="display: flex; flex-direction: column;">
+    <button mat-button (click)="increment()" [disabled]="disabled" style="line-height: 9px; min-width: 16px; padding: 0 8px; border-radius: 0;">+</button>
+    <button mat-button (click)="decrement()" [disabled]="disabled" style="line-height: 9px; min-width: 16px; padding: 0 8px; border-radius: 0;">-</button>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<h1>Material - Custom Number Input Component</h1>
+<code>
+  <div>&lt;form [formGroup]="form"></div>
+  <div>&nbsp;&lt;mat-form-field></div>
+  <div>&nbsp;&nbsp;&nbsp;&lt;mat-label>Counter&lt;/mat-label></div>
+  <div>&nbsp;&nbsp;&nbsp;&lt;app-number-input placeholder="Some placeholder" formControlName="counter" required>&lt;/app-number-input></div>
+  <div>&nbsp;&nbsp;&nbsp;&lt;mat-hint>This is a hint&lt;/mat-hint></div>
+  <div>&nbsp;&nbsp;&nbsp;&lt;mat-error>Counter is required.&lt;/mat-error></div>
+  <div>&nbsp;&lt;/mat-form-field></div>
+  <div>&lt;/form></div>
+</code>
+<p>The input also supports 'min' and 'max' to enforce minimum and maximum values in the input.</p>
+<form [formGroup]="form">
+  <h4>Model Driven Reactive Forms</h4>
+	<mat-form-field>
+    <mat-label>Counter</mat-label>
+		<app-number-input placeholder="Enter value" formControlName="counter" required></app-number-input>
+    <mat-hint>Enter a value or use the +/- buttons</mat-hint>
+    <mat-error *ngIf="form.get('counter').hasError('required')">Counter is required.</mat-error>
+    <mat-error *ngIf="form.get('counter').hasError('min')">Must be greater than 5.</mat-error>
+    <mat-error *ngIf="form.get('counter').hasError('max')">Must be less than 10.</mat-error>
+	</mat-form-field>
+</form>
+<div>
+  <p></p>
+  <div>value: {{form.value | json}}</div>
+  <div>touched: {{form.get('counter').touched}}</div>
+  <div>dirty: {{form.get('counter').dirty}}</div>
+  <div>pristine: {{form.get('counter').pristine}}</div>
+  <div>invalid: {{form.get('counter').invalid}}</div>
+  <div>errors: {{form.get('counter').errors | json}}</div>
+</div>
+<form>
+  <h4>Template Driven Form</h4>
+	<mat-form-field>
+    <mat-label>Counter</mat-label>
+		<app-number-input #c="ngModel" name="counter" placeholder="Enter value" [(ngModel)]="counter" required min="5" max="10"></app-number-input>
+    <mat-hint>Enter a value or use the +/- buttons</mat-hint>
+    <mat-error *ngIf="c.errors?.required">Counter is required.</mat-error>
+	</mat-form-field>
+</form>
+<div>
+  <p></p>
+  <div>value: {{counter}}</div>
+  <div>touched: {{c.touched}}</div>
+  <div>dirty: {{c.dirty}}</div>
+  <div>pristine: {{c.pristine}}</div>
+  <div>invalid: {{c.invalid}}</div>
+  <div>errors: {{c.errors | json}}</div>
+</div>
